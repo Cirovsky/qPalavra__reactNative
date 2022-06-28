@@ -36,8 +36,8 @@ export default class App extends Component {
         let arrayHint = this.state.arrayHint
         arrayHint[line].splice(index,1,letter)
         console.log(arrayHint[line])
-        line = index == 5? line + 1 : line
-        index = index == 5? 0 : index + 1
+        line = index == 4? line + 1 : line
+        index = index == 4? 0 : index + 1
         console.log('index',index,'line', line)
         this.setState({arrayHint, index, line})
     }
@@ -52,7 +52,7 @@ export default class App extends Component {
                 </Text>
             </View>
             <View style = {styles.container}>
-                <Board word ={this.state.arrayHint[this.state.line]} selLine={this.state.line}/>
+                <Board word ={this.state.arrayHint} selLine={this.state.line}/>
             </View>
             <View style = {[styles.container, {flex: 0.5}]}>
                 <KeyPad onClick = {this.showLetter}/>
