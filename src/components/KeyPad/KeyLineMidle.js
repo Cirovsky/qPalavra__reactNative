@@ -6,17 +6,20 @@ import {
 import styles from "../../styles";
 import Key from "./Key";
 
-export default (props) => (
-    <View style = {styles.keyLine}>
-        <Key keyLetter = 'A'/>
-        <Key keyLetter = 'S'/>
-        <Key keyLetter = 'D'/>
-        <Key keyLetter = 'F'/>
-        <Key keyLetter = 'G'/>
-        <Key keyLetter = 'H'/>
-        <Key keyLetter = 'J'/>
-        <Key keyLetter = 'K'/>
-        <Key keyLetter = 'L'/>
-        <Key keyLetter = '<'/>
-    </View>
-)
+export default (props) =>{
+    const eventClick = props.onClick
+    return (
+        <View style = {styles.keyLine}>
+            <Key keyLetter = 'A' onClick ={eventClick}/>
+            <Key keyLetter = 'S' onClick ={eventClick}/>
+            <Key keyLetter = 'D' onClick ={eventClick}/>
+            <Key keyLetter = 'F' onClick ={eventClick}/>
+            <Key keyLetter = 'G' onClick ={eventClick}/>
+            <Key keyLetter = 'H' onClick ={eventClick}/>
+            <Key keyLetter = 'J' onClick ={eventClick}/>
+            <Key keyLetter = 'K' onClick ={eventClick}/>
+            <Key keyLetter = 'L' onClick ={eventClick}/>
+            <Key keyLetter = '<' onClick ={eventClick}/>
+        </View>
+    )
+}

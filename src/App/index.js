@@ -9,9 +9,6 @@ import Board from "../components/Board";
 import KeyPad from "../components/KeyPad";
 import styles from "../styles";
 
-
-let word = ['TEST0','TEST1','TEST2', 'TEST3', 'TEST4','TEST5']
-
 export default class App extends Component {
     constructor(props){
         super(props)
@@ -20,15 +17,29 @@ export default class App extends Component {
 
     creatState = () => {
         return {
-            arrayHint: word,
-            nextLine: 0
+            arrayHint: [
+                ['','','','',''],
+                ['','','','',''],
+                ['','','','',''], 
+                ['','','','',''], 
+                ['','','','',''],
+                ['','','','','']],
+            index: 0,
+            line: 0
         }
 
     }
     
     showLetter = (letter) => {
-        const word = this.state.arrayHint
-        word.splice(0,1,letter)
+        let index = this.state.index
+        let line = this.state.line
+        let arrayHint = this.state.arrayHint
+        arrayHint[line].splice(index,1,letter)
+        console.log(arrayHint[line])
+        index = index == 6? 0 : index + 1
+        line = index == 6? line + 1 : line
+        console.log('index',index,'line', line)
+        this.setState({arrayHint, index, line})
     }
 
     render(){
@@ -41,10 +52,10 @@ export default class App extends Component {
                 </Text>
             </View>
             <View style = {styles.container}>
-                <Board word ={this.state.arrayHint[this.state.nextLine]} selLine={this.state.nextLine}/>
+                <Board word ={this.state.arrayHint[this.state.line]} selLine={this.state.line}/>
             </View>
             <View style = {[styles.container, {flex: 0.5}]}>
-                <KeyPad/>
+                <KeyPad onClick = {this.showLetter}/>
             </View>
         </SafeAreaView>
     )
