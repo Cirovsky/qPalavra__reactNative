@@ -36,8 +36,8 @@ export default class App extends Component {
         let arrayHint = this.state.arrayHint
         arrayHint[line].splice(index,1,letter)
         console.log(arrayHint[line])
-        index = index == 6? 0 : index + 1
-        line = index == 6? line + 1 : line
+        line = index == 5? line + 1 : line
+        index = index == 5? 0 : index + 1
         console.log('index',index,'line', line)
         this.setState({arrayHint, index, line})
     }
