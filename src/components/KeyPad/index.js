@@ -10,7 +10,6 @@ import KeyLineTop from "./KeyLineTop";
 
 export default (props) => {
     const eventClick = props.onClick
-    console.log(eventClick)
     return (
     
         <View style = {styles.keyPad}>
