@@ -9,6 +9,7 @@ import {
 import Board from "../components/Board";
 import KeyPad from "../components/KeyPad";
 import styles from "../styles";
+import { compareRiddleHint } from "./logic";
 
 export default class App extends Component {
     constructor(props) {
@@ -18,13 +19,23 @@ export default class App extends Component {
 
     creatState = () => {
         return {
-            arrayHint: [
-                ['', '', '', '', ''],
-                ['', '', '', '', ''],
-                ['', '', '', '', ''],
-                ['', '', '', '', ''],
-                ['', '', '', '', ''],
-                ['', '', '', '', '']],
+            board:{
+                arrayHint: [
+                    ['', '', '', '', ''],
+                    ['', '', '', '', ''],
+                    ['', '', '', '', ''],
+                    ['', '', '', '', ''],
+                    ['', '', '', '', ''],
+                    ['', '', '', '', '']],
+                arrayHits: [
+                    [false,false,false, false, false],
+                    [false,false,false, false, false],
+                    [false,false,false, false, false],
+                    [false,false,false, false, false],
+                    [false,false,false, false, false],
+                    [false,false,false, false, false],
+                ],
+            },
             index: 0,
             line: 0,
             won: false,
@@ -35,22 +46,25 @@ export default class App extends Component {
 
     showLetter = (letter) => {
 
-        const arrayHint = this.state.arrayHint
+        const arrayHint = this.state.board.arrayHint
+        const arrayHits = this.state.board.arrayHits
         let index = this.state.index
         let line = this.state.line
         let won = this.state.won
         let lost = this.state.lost
 
         lost = line > 5 ? true : false
-        console.log('index', index)
         if (lost) {
             return Alert.alert('Você perdeu!')
         } else if (letter == 'ENTER') {
             if (index == 5){
                 index = 0
+                arrayHits[line] = compareRiddleHint(arrayHint[line])
+                console.log('ficou verde?')
                 line = line + 1
-                console.log('condição B',line, index)
                 this.setState({ arrayHint, index, line, won, lost })
+            }else{
+                return
             }
         } else if (index < 5) {
             if (letter == '<'){
@@ -59,11 +73,9 @@ export default class App extends Component {
                 }else{
                     index = index - 1
                     arrayHint[line].splice(index, 1, '')
-                    console.log('condição C',line, index)
                     this.setState({ arrayHint, index, line, won, lost })
                 }
             }else{
-                console.log('condição A',line, index)
                 arrayHint[line].splice(index, 1, letter)
                 index = index + 1
                 this.setState({ arrayHint, index, line, won, lost })
@@ -82,7 +94,7 @@ render(){
                 </Text>
             </View>
             <View style={styles.container}>
-                <Board word={this.state.arrayHint} selLine={this.state.line} />
+                <Board board={this.state.board} selLine={this.state.line} />
             </View>
             <View style={[styles.container, { flex: 0.5 }]}>
                 <KeyPad onClick={this.showLetter} />

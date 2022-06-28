@@ -4,8 +4,11 @@ import {
     View
 } from "react-native";
 import styles from "../../styles";
-export default (props) => (
-    <View style = {styles.cell}>
-        <Text style = {styles.innerLetter}>{props.Letter}</Text>
-    </View>
-)
+export default (props) => {
+    const cellEffect = props.showStyle
+    return (
+        <View style = {[styles.cell,cellEffect]}>
+            <Text style = {styles.innerLetter}>{props.Letter}</Text>
+        </View>
+    )
+}
