@@ -2,10 +2,12 @@ import React, {useState} from "react";
 import{
     SafeAreaView,
     View,
-    Text
+    Text,
+    TouchableOpacity,
 }
 from "react-native";
 import Board from "../components/Board";
+import KeyPad from "../components/KeyPad";
 import styles from "../styles";
 
 export default () => {
@@ -23,6 +25,7 @@ export default () => {
                 <Board word ={arrayHint[nextLine]} selLine={nextLine}/>
             </View>
             <View style = {[styles.container, {flex: 0.5}]}>
+                <KeyPad/>
             </View>
         </SafeAreaView>
     )

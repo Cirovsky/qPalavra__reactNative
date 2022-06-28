@@ -38,6 +38,31 @@ const styles = StyleSheet.create({
         innerLetter:{
             fontSize: 40,
             fontWeight: 'bold'
+        },
+        keyPad:{
+            flex: 1,
+            //flexDirection: 'column',
+            justifyContent: 'center',
+            alignItems: 'center'
+        },
+        keyLine:{
+            flex: 1,
+            flexDirection: 'row',
+            justifyContent: 'center'
+        },
+        key:{
+            height: 55,
+            width: 35,
+            marginTop: 5,
+            margin: 1,
+            backgroundColor: '#666',
+            justifyContent: 'center',
+            alignItems: 'center',
+            borderRadius: 4
+        },
+        keyLetter:{
+            fontSize: 20,
+            color: '#FFF'
         }
     })
 

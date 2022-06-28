@@ -3,7 +3,7 @@ import {
     Text,
     View
 } from "react-native";
-import styles from "../styles";
+import styles from "../../styles";
 import Cell from "./Cell";
 
 export default (props) => {
