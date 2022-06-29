@@ -64,7 +64,7 @@ export default class App extends Component {
             return
 
         } else if (letter == 'ENTER') {
-            if (index > 5) {
+            if (index >= 5) {
                 index = 0
                 arrayHits[line] = checkRiddleHint(arrayHint[line])
                 won = this.isWon(arrayHits[line])
