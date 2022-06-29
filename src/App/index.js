@@ -54,7 +54,6 @@ export default class App extends Component {
         let lost = this.state.lost
         
 
-        console.log(won, this.state.won)
         lost = line > 5 ? true : false
 
         if (won) {
@@ -65,7 +64,7 @@ export default class App extends Component {
             return
 
         } else if (letter == 'ENTER') {
-            if (index >= 5) {
+            if (index > 5) {
                 index = 0
                 arrayHits[line] = checkRiddleHint(arrayHint[line])
                 won = this.isWon(arrayHits[line])
@@ -75,7 +74,7 @@ export default class App extends Component {
             } else {
                 return
             }
-        } else if (index <= 5) {
+        } else{
             if (letter == '<') {
                 if (index === 0) {
                     return
@@ -85,10 +84,13 @@ export default class App extends Component {
                     arrayHint[line].splice(index, 1, '')
                     this.setState({ arrayHint, index, line, won, lost })
                 }
-            } else {
+            } else if (index <=4){
                 arrayHint[line].splice(index, 1, letter)
+                console.log('index: ',index)
                 index = index + 1
                 this.setState({ arrayHint, index, line, won, lost })
+            }else{
+                return
             }
         }
 
