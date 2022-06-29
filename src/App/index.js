@@ -52,9 +52,10 @@ export default class App extends Component {
         let line = this.state.line
         let won = this.state.won
         let lost = this.state.lost
+        
 
-        lost = line > 5 ? true : false
         console.log(won, this.state.won)
+        lost = line > 5 ? true : false
 
         if (won) {
             Alert.alert('você venceu!')
@@ -68,6 +69,7 @@ export default class App extends Component {
                 index = 0
                 arrayHits[line] = checkRiddleHint(arrayHint[line])
                 won = this.isWon(arrayHits[line])
+                lost = this.isLost(line, won)
                 line = line + 1
                 this.setState({ arrayHint, index, line, won, lost })
             } else {
@@ -99,7 +101,12 @@ export default class App extends Component {
         const won = !checkHits.includes(false)
         won? Alert.alert('você venceu!'): ''
         return won
-    }        
+    }
+    isLost(line,won){
+        const lost = (won == false && line >= 5)? true : false
+        lost? Alert.alert('você perdeu!!'): ''
+        return lost
+    }
 
     render() {
 
