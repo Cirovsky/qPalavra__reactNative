@@ -9,7 +9,7 @@ import {
 import Board from "../components/Board";
 import KeyPad from "../components/KeyPad";
 import styles from "../styles";
-import { checkRiddleHint, riddle } from "./logic";
+import { checkRiddleGuess, jackpot} from "./logic";
 
 export default class App extends Component {
     constructor(props) {
@@ -66,7 +66,7 @@ export default class App extends Component {
         } else if (letter == 'ENTER') {
             if (index >= 5) {
                 index = 0
-                arrayHits[line] = checkRiddleHint(arrayHint[line])
+                arrayHits[line] = checkRiddleGuess(arrayHint[line])
                 won = this.isWon(arrayHits[line])
                 lost = this.isLost(line, won)
                 line = line + 1
@@ -80,13 +80,11 @@ export default class App extends Component {
                     return
                 } else {
                     index = index - 1
-                    console.log('index:', index)
                     arrayHint[line].splice(index, 1, '')
                     this.setState({ arrayHint, index, line, won, lost })
                 }
             } else if (index <=4){
                 arrayHint[line].splice(index, 1, letter)
-                console.log('index: ',index)
                 index = index + 1
                 this.setState({ arrayHint, index, line, won, lost })
             }else{
@@ -97,9 +95,7 @@ export default class App extends Component {
     }
 
     isWon(Hits){
-        console.log('Hits[0]: ', Hits[0]["backgroundColor"])
-        const checkHits = Hits.map((e) => e["backgroundColor"] == 'green'? true:false)
-        console.log('tem falso?',checkHits.includes(false))
+        const checkHits = Hits.map((e) => e["backgroundColor"] == jackpot? true:false)
         const won = !checkHits.includes(false)
         won? Alert.alert('você venceu!'): ''
         return won

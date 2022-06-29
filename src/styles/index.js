@@ -1,7 +1,11 @@
 import React from "react";
 import {
+    Dimensions,
     StyleSheet
 } from "react-native";
+
+const totalHeight = Dimensions.get('window').height
+const totalWidht = Dimensions.get('window').width
 
 const styles = StyleSheet.create({
         header:{
@@ -10,24 +14,23 @@ const styles = StyleSheet.create({
             alignItems: 'center'
         },
         headerText:{
-            fontSize: 30
+            fontSize: totalHeight/16
         },
         main:{
             flex: 1
         },
         container:{
-            flex: 1
+            flex: 1,
+            marginBottom: totalHeight/250
         },
         cell:{
             justifyContent: 'center',
             alignItems: 'center',
-            height: 60,
-            width: 50,
-            borderStyle: 'solid',
-            borderSize: 10,
+            height: totalHeight/11,
+            width: totalWidht/7,
             borderColor: '#000',
-            backgroundColor: '#CCC',
-            margin: 2
+            backgroundColor: '#888',
+            margin: totalHeight/300
         },
         line:{
             flex: 1,
@@ -36,14 +39,14 @@ const styles = StyleSheet.create({
 
         },
         innerLetter:{
-            fontSize: 40,
+            fontSize: totalHeight/20,
             fontWeight: 'bold'
         },
         keyPad:{
             flex: 1,
             //flexDirection: 'column',
             justifyContent: 'center',
-            alignItems: 'center'
+            alignItems: 'center',
         },
         keyLine:{
             flex: 1,
@@ -51,17 +54,17 @@ const styles = StyleSheet.create({
             justifyContent: 'center'
         },
         key:{
-            height: 55,
-            width: 35,
-            marginTop: 5,
-            margin: 1,
+            height: totalHeight/11,
+            width: totalWidht/11,
+            marginTop: totalHeight/400,
+            margin: totalWidht/300,
             backgroundColor: '#666',
             justifyContent: 'center',
             alignItems: 'center',
             borderRadius: 4
         },
         keyLetter:{
-            fontSize: 20,
+            fontSize: totalHeight/40,
             color: '#FFF'
         }
     })
