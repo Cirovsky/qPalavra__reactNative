@@ -1,25 +1,24 @@
 
-const compareRiddleHint = (hint) => {
-    const riddle = ['G','A','T','O','S']//provisório, para testes
-    
+    const riddle = ['A', 'D', 'A', 'G', 'A']//provisório, para testes
+const checkRiddleHint = (hint) => {
+    var checkRiddle = riddle.slice()
     let hits = []
-    console.log(hits,riddle,hint)
-    for (let index in riddle) {
+    for (let index in riddle){
         if (riddle[index] == hint[index]) {
-            console.log(riddle[index], hint[index])
-            hits.push({backgroundColor: 'green'})
-        }else if(riddle.indexOf(hint[index]) != -1) {
-            console.log(hint[index],index,riddle.indexOf(hint[index]) != -1)
-            hits.push({backgroundColor: 'yellow'})
-        }else{
+            hits.push({ backgroundColor: 'green' })
+            checkRiddle.splice(checkRiddle.indexOf(hint[index]),1)
+        } else if (checkRiddle.indexOf(hint[index]) != -1) {
+            checkRiddle.includes(hint[index])?
+            hits.push({ backgroundColor: 'yellow' })
+            : hits.push('')
+            checkRiddle.splice(checkRiddle.indexOf(hint[index]),1)
+        } else {
             hits.push('')
         }
     }
     return hits
 }
 
-
-
 export {
-    compareRiddleHint
+    checkRiddleHint
 }

@@ -9,7 +9,7 @@ import {
 import Board from "../components/Board";
 import KeyPad from "../components/KeyPad";
 import styles from "../styles";
-import { compareRiddleHint } from "./logic";
+import { checkRiddleHint } from "./logic";
 
 export default class App extends Component {
     constructor(props) {
@@ -59,8 +59,7 @@ export default class App extends Component {
         } else if (letter == 'ENTER') {
             if (index == 5){
                 index = 0
-                arrayHits[line] = compareRiddleHint(arrayHint[line])
-                console.log('ficou verde?')
+                arrayHits[line] = checkRiddleHint(arrayHint[line])
                 line = line + 1
                 this.setState({ arrayHint, index, line, won, lost })
             }else{
