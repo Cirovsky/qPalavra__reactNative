@@ -57,7 +57,7 @@ export default class App extends Component {
         if (lost) {
             return Alert.alert('Você perdeu!')
         } else if (letter == 'ENTER') {
-            if (index == 5){
+            if (index >= 5){
                 index = 0
                 arrayHits[line] = checkRiddleHint(arrayHint[line])
                 line = line + 1
@@ -65,12 +65,13 @@ export default class App extends Component {
             }else{
                 return
             }
-        } else if (index < 5) {
+        } else if (index <= 5) {
             if (letter == '<'){
                 if(index === 0){
                     return
                 }else{
                     index = index - 1
+                    console.log('index:',index)
                     arrayHint[line].splice(index, 1, '')
                     this.setState({ arrayHint, index, line, won, lost })
                 }
