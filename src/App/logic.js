@@ -16,15 +16,15 @@ const checkRiddleHint = (hint) => {
             checkRiddle.includes(hint[index])?
             hits.push({ backgroundColor: 'yellow' })
 
-            : hits.push(null)
+            : hits.push({})
             checkRiddle.splice(checkRiddle.indexOf(hint[index]),1)
         } else {
-            hits.push(null)
+            hits.push({})
         }
     }
     return hits
 }
-
 export {
-    checkRiddleHint
+    checkRiddleHint,
+    riddle,
 }

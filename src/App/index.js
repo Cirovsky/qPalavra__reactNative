@@ -9,7 +9,7 @@ import {
 import Board from "../components/Board";
 import KeyPad from "../components/KeyPad";
 import styles from "../styles";
-import { checkRiddleHint } from "./logic";
+import { checkRiddleHint, riddle } from "./logic";
 
 export default class App extends Component {
     constructor(props) {
@@ -19,7 +19,7 @@ export default class App extends Component {
 
     creatState = () => {
         return {
-            board:{
+            board: {
                 arrayHint: [
                     ['', '', '', '', ''],
                     ['', '', '', '', ''],
@@ -28,12 +28,12 @@ export default class App extends Component {
                     ['', '', '', '', ''],
                     ['', '', '', '', '']],
                 arrayHits: [
-                    [false,false,false, false, false],
-                    [false,false,false, false, false],
-                    [false,false,false, false, false],
-                    [false,false,false, false, false],
-                    [false,false,false, false, false],
-                    [false,false,false, false, false],
+                    [{}, {}, {}, {}, {}],
+                    [{}, {}, {}, {}, {}],
+                    [{}, {}, {}, {}, {}],
+                    [{}, {}, {}, {}, {}],
+                    [{}, {}, {}, {}, {}],
+                    [{}, {}, {}, {}, {}],
                 ],
             },
             index: 0,
@@ -54,55 +54,72 @@ export default class App extends Component {
         let lost = this.state.lost
 
         lost = line > 5 ? true : false
-        if (lost) {
-            return Alert.alert('Você perdeu!')
+        console.log(won, this.state.won)
+
+        if (won) {
+            Alert.alert('você venceu!')
+            return
+        } else if (lost) {
+            Alert.alert('Você perdeu!')
+            return
+
         } else if (letter == 'ENTER') {
-            if (index >= 5){
+            if (index >= 5) {
                 index = 0
                 arrayHits[line] = checkRiddleHint(arrayHint[line])
+                won = this.isWon(arrayHits[line])
                 line = line + 1
                 this.setState({ arrayHint, index, line, won, lost })
-            }else{
+            } else {
                 return
             }
         } else if (index <= 5) {
-            if (letter == '<'){
-                if(index === 0){
+            if (letter == '<') {
+                if (index === 0) {
                     return
-                }else{
+                } else {
                     index = index - 1
-                    console.log('index:',index)
+                    console.log('index:', index)
                     arrayHint[line].splice(index, 1, '')
                     this.setState({ arrayHint, index, line, won, lost })
                 }
-            }else{
+            } else {
                 arrayHint[line].splice(index, 1, letter)
                 index = index + 1
                 this.setState({ arrayHint, index, line, won, lost })
             }
         }
 
-}
+    }
 
-render(){
+    isWon(Hits){
+        console.log('Hits[0]: ', Hits[0]["backgroundColor"])
+        const checkHits = Hits.map((e) => e["backgroundColor"] == 'green'? true:false)
+        console.log('tem falso?',checkHits.includes(false))
+        const won = !checkHits.includes(false)
+        won? Alert.alert('você venceu!'): ''
+        return won
+    }        
 
-    return (
-        <SafeAreaView style={styles.main}>
-            <View style={styles.header}>
-                <Text style={styles.headerText}>
-                    Qpalavra
-                </Text>
-            </View>
-            <View style={styles.container}>
-                <Board board={this.state.board} selLine={this.state.line} />
-            </View>
-            <View style={[styles.container, { flex: 0.5 }]}>
-                <KeyPad onClick={this.showLetter} />
-            </View>
-        </SafeAreaView>
-    )
+    render() {
 
-}
-        
+        return (
+            <SafeAreaView style={styles.main}>
+                <View style={styles.header}>
+                    <Text style={styles.headerText}>
+                        Qpalavra
+                    </Text>
+                </View>
+                <View style={styles.container}>
+                    <Board board={this.state.board} selLine={this.state.line} />
+                </View>
+                <View style={[styles.container, { flex: 0.5 }]}>
+                    <KeyPad onClick={this.showLetter} />
+                </View>
+            </SafeAreaView>
+        )
+
+    }
+
 }
 
