@@ -18,4 +18,4 @@ Tela de vitória:
 ![qemu-system-x86_64_wxbqyyvBpd](https://user-images.githubusercontent.com/84918342/176547874-3d04df03-d7be-47c1-bda7-4e65229aaece.png)
 
 
-obs.: indentifiquei um bug atual no jogo: ele fica "amarelo" avisando que tem determinada letra mesmo quando a letra é localizada após o aviso amarelo.
+bug do amarelo quando a letra já ficou verde corrigido! 
