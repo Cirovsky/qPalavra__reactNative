@@ -64,4 +64,4 @@ buck-out/
 
 #Android
 
-android/grable.properties
+/android/grable.properties
