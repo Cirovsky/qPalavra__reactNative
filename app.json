@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "qPalavra",
-    "slug": "qPalavra",
+    "name": "qpalavra",
+    "slug": "qpalavra",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
