@@ -1,5 +1,8 @@
 # qPalavra
 
+Agora, o aplicativo Qpalavra possui versão web. Pode ser acessado nesta url:
+https://qpalavra.netlify.app/
+
 Projeto pessoal de um "Wordle-like" feito do zero.
 Layout atual:
 
